@@ -34,7 +34,9 @@ pipeline {
             }
             
         }
+        
         parallel test
+        
         stage('stage end') {
             steps {
               println('stage end')
