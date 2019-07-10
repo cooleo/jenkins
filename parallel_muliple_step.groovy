@@ -21,11 +21,32 @@ test["b"] = {
         }
     }
 }
-node {
+
+pipeline {
+    agent any;
+    options{
+        preserveStashes()
+    }
+    stages {
+        stage('stage 1') {
+            steps {
+                println('stage 1')
+            }
+            
+        }
+        parallel test
+        stage('stage end') {
+            steps {
+              println('stage end')
+            }
+        }
+    }
+}
+/*node {
    //stage 'start'
    parallel test
    stage ('middle') {
        sh "echo middle"
    }
    
-}
+}*/
