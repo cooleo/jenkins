@@ -22,33 +22,17 @@ test["b"] = {
     }
 }
 
+
 pipeline {
-    agent any;
-    options{
-        preserveStashes()
-    }
+    agent { label "master" }
     stages {
-        stage('stage 1') {
+        stage('Paralell dynamic stages') {
             steps {
-                println('stage 1')
-            }
-            
-        }
-        
-        parallel test
-        
-        stage('stage end') {
-            steps {
-              println('stage end')
+                script {
+                    
+                    parallel test
+                }
             }
         }
     }
 }
-/*node {
-   //stage 'start'
-   parallel test
-   stage ('middle') {
-       sh "echo middle"
-   }
-   
-}*/
