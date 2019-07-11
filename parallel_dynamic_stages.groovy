@@ -2,7 +2,7 @@
 def getListStages() {
     String[] arrStr = ["Stage Test 1", "Stage Test 2", "Stage Test 3"]
     return arrStr
-    
+
 }
 
 pipeline {
@@ -14,17 +14,14 @@ pipeline {
                     def stageList = [:]
                     def stageNames = getListStages()
                     for (String stageName : stageNames) {
-
                         stageList["${stageName}"] = {
-                            node {
+                           node {
                                 stage("${stageName}") {
                                     echo '${stageName}'
                                 }
-                            }
+                           }
                         }
-
                     }
-
                     parallel stageList
                 }
             }
