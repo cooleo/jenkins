@@ -1,22 +1,33 @@
+
+def getListStages() {
+    String[] arrStr = ["Stage Test 1", "Stage Test 2", "Stage Test 3"]
+    return arrStr
+    
+}
+
 pipeline {
-    agent { label "master"}
+    agent { label "master" }
     stages {
         stage('Paralell dynamic stages') {
             steps {
                 script {
-                    def tests = [:]
-                    for (f in findFiles(glob: '**/html/*.html')) {
-                        tests["${f}"] = {
+                    def stageList = [:]
+                    def stageNames = getListStages()
+                    for (String stageName : stageNames) {
+
+                        stageList["${stageName}"] = {
                             node {
-                                stage("${f}") {
-                                    echo '${f}'
+                                stage("${stageName}") {
+                                    echo '${stageName}'
                                 }
                             }
                         }
+
                     }
-                    parallel tests
+
+                    parallel stageList
                 }
             }
-        }       
+        }
     }
 }
