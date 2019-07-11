@@ -29,7 +29,6 @@ pipeline {
         stage('Paralell dynamic stages') {
             steps {
                 script {
-                    
                     parallel test
                 }
             }
