@@ -15,7 +15,7 @@ pipeline {
                 stage('Test On Linux') {
                     stage('Test on Linux 1') {
                         steps {
-                           println('Test on Linux 1)
+                           println('Test on Linux 1')
                         }
                     }
                  stage('Test on linux 2') {
