@@ -1,34 +1,27 @@
 pipeline {
-    agent none
+    agent any;
+    options {
+        preserveStashes()
+    }
     stages {
         stage('Run Tests') {
             parallel {
                 stage('Test On Windows') {
                     
                     steps {
-                       println('Test on Windows')
+                       
+                             print('Test windows 1')
+                       
                     }
                     
                 }
                 stage('Test On Linux') {
-                    stage('Test on Linux 1') {
-                        steps {
-                           println('Test on Linux 1)
-                        }
+                   
+                    steps {
+                         print('Test Linux 1')
                     }
-                 stage('Test on linux 2') {
-                     steps{
-                        println('Test on Linux 2')
-                     }
-                 }
-                    
+                   
                 }
-                
-            }
-        }
-        stage('Deployment') {
-            steps {
-                println('Deployment')
             }
         }
     }
